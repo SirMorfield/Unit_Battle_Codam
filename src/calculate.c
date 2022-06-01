@@ -18,7 +18,9 @@ int calculate(unsigned int *arr, int count)
 	while (i < count)
 	{
 		// spares
-		if (i > 0 && arr[i] == 10 && arr[i - 1] == 10)
+		if (count >= 3 && arr[i] == 10)
+			sum += arr[i + 1] + arr[i + 2];
+		else if (i > 0 && arr[i] == 10 && arr[i - 1] == 10)
 			sum += arr[i + 1];
 		sum += arr[i];
 		i++;
