@@ -1,0 +1,41 @@
+        -:    0:Source:unit_test/src/unit_test.c
+        -:    0:Graph:unit_test.gcno
+        -:    0:Data:unit_test.gcda
+        -:    0:Runs:3
+        -:    0:Programs:1
+        -:    1:/* ************************************************************************** */
+        -:    2:/*                                                                            */
+        -:    3:/*                                                        ::::::::            */
+        -:    4:/*   unit_test.c                                        :+:    :+:            */
+        -:    5:/*                                                     +:+                    */
+        -:    6:/*   By: safoh <safoh@student.codam.nl>               +#+                     */
+        -:    7:/*                                                   +#+                      */
+        -:    8:/*   Created: 2022/05/26 16:46:15 by safoh         #+#    #+#                 */
+        -:    9:/*   Updated: 2022/06/01 16:21:16 by rnijhuis      ########   odam.nl         */
+        -:   10:/*                                                                            */
+        -:   11:/* ************************************************************************** */
+        -:   12:
+        -:   13:#include "unit_test.h"
+        -:   14:#include "../../include/main.h"
+        -:   15:
+        -:   16:void	string_to_num_tester(const char *input, unsigned int expected, bool func_return);
+        -:   17:
+        2:   18:Test(string_to_num, should_pass_all_tests_provided)
+        -:   19:{
+        1:   20:	string_to_num_tester("100", 100, true);
+        1:   21:	string_to_num_tester("10", 10, true); 
+        1:   22:	string_to_num_tester("1000", 1000, true);
+        1:   23:	string_to_num_tester("1001", 1001, true);
+        1:   24:}
+        -:   25:
+        4:   26:void	string_to_num_tester(const char *input, unsigned int expected, bool func_return)
+        -:   27:{
+        4:   28:	unsigned int min = 0;
+        4:   29:	unsigned int max = 20000000;
+        -:   30:
+        -:   31:	unsigned int result;
+        -:   32:	
+        4:   33:	bool output = parse_uint(input, &result, min, max);
+        4:   34:	cr_assert(result == expected, "Submitted: %s as an input and expected %i", input, expected);
+        4:   35:	cr_assert(output == func_return, "Submitted: %s as an input and expected the function return to be %i", input, func_return);
+        4:   36:}

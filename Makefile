@@ -1,23 +1,23 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
 #    By: saladuit <safoh@student.codam.nl>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/04/13 21:33:38 by saladuit      #+#    #+#                  #
-#    Updated: 2022/05/30 23:50:23 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/01 16:17:09 by rnijhuis      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-include makerc/files.mk
+
 include makerc/colours.mk
 
 PROJECT				:=	Unit-Battle
 NAME				:=	bowling_game
 
 MAIN 				:=	main.c
-SRCS				=	calculate.c
+SRCS				=	calculate.c parse_uint.c
 UNIT_SRCS			=	unit_test.c calculate_test.c
 
 
@@ -36,7 +36,7 @@ OBJS				=	$(addprefix $(BUILD_DIR), $(SRCS:%.c=%.o))
 
 UNIT_DIR			:=	unit_test/$(HEADERS_DIR)
 UNIT_HEADERS		:=	$(UNIT_DIR)unit_test.h
-HEADERS				:=	$(HEADERS_DIR)bowling_game.h
+HEADERS				:=	$(HEADERS_DIR)bowling.h
 INCLUDE_FLAGS		:= $(addprefix -I, $(sort $(dir $(HEADERS))))
 
 
@@ -62,7 +62,7 @@ $(NAME): $(OBJS) $(MAIN_OBJ)
 	$(CC) $(CFLAGS) $^ $(INCLUDE_FLAGS) -o $(NAME)
 	@printf "$(BLUE_FG)$(NAME)$(RESET_COLOR) created\n"
 
-$(BUILD_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
+build/%.o: src/%.c $(HEADERS)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDE_FLAGS) $(INCLUDES) -c $< -o $@
 
@@ -76,11 +76,9 @@ fsan:
 
 clean:
 	$(RM) $(OBJS) $(MAIN_OBJ) $(UNIT_TEST_OBJS) $(COVERAGE)
-	@$(MAKE) clean -C $(LIB_DIR)
 
 fclean: clean
 	$(RM) $(NAME) $(UNIT_TEST)
-	@$(MAKE) fclean -C $(LIB_DIR)
 
 re: fclean
 	$(MAKE)
