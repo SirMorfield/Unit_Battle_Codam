@@ -55,4 +55,7 @@ Test(foo, calculate)
 
 	unsigned int arr2[] = {9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0};
 	test_calculate(arr2, 20, 90);
+
+	unsigned int arr3[] = {10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10};
+	test_calculate(arr3, 10, 300);
 }
