@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         ::::::::             #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:    :+:             #
 #                                                      +:+                     #
 #    By: saladuit <safoh@student.codam.nl>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/04/13 21:33:38 by saladuit      #+#    #+#                  #
-#    Updated: 2022/05/30 23:50:23 by safoh            ###   ########.fr        #
+#    Updated: 2022/06/01 16:11:28 by rnijhuis      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ PROJECT				:=	Unit-Battle
 NAME				:=	bowling_game
 
 MAIN 				:=	main.c
-SRCS				=
+SRCS				=	parse_uint.c
 UNIT_SRCS			=	unit_test.c
 
 
@@ -36,7 +36,7 @@ OBJS				=	$(addprefix $(BUILD_DIR), $(SRCS:%.c=%.o))
 
 UNIT_DIR			:=	unit_test/$(HEADERS_DIR)
 UNIT_HEADERS		:=	$(UNIT_DIR)unit_test.h
-HEADERS				:=	$(HEADERS_DIR)bowling_game.h
+HEADERS				:=	$(HEADERS_DIR)bowling.h
 INCLUDE_FLAGS		:= $(addprefix -I, $(sort $(dir $(HEADERS))))
 
 
