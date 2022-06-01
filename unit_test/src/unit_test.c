@@ -6,7 +6,7 @@
 /*   By: safoh <safoh@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/26 16:46:15 by safoh         #+#    #+#                 */
-/*   Updated: 2022/06/01 16:15:40 by rnijhuis      ########   odam.nl         */
+/*   Updated: 2022/06/01 16:21:16 by rnijhuis      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ void	string_to_num_tester(const char *input, unsigned int expected, bool func_re
 	
 	bool output = parse_uint(input, &result, min, max);
 	cr_assert(result == expected, "Submitted: %s as an input and expected %i", input, expected);
-	cr_assert(output == expected, "Submitted: %s as an input and expected the function return to be %i", input, func_return);
+	cr_assert(output == func_return, "Submitted: %s as an input and expected the function return to be %i", input, func_return);
 }

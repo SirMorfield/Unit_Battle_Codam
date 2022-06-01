@@ -6,11 +6,11 @@
 #    By: saladuit <safoh@student.codam.nl>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/04/13 21:33:38 by saladuit      #+#    #+#                  #
-#    Updated: 2022/06/01 16:11:28 by rnijhuis      ########   odam.nl          #
+#    Updated: 2022/06/01 16:17:09 by rnijhuis      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-include makerc/files.mk
+
 include makerc/colours.mk
 
 PROJECT				:=	Unit-Battle
@@ -28,9 +28,9 @@ CFLAGS				=	-Wall -Wextra -Werror $(if $(DEBUG), -g) \
 					$(if $(FSAN), -fsanitize=address -g) \
 
 SRC_DIR				:=	src/
-BUILD_DIR			:=	build/
+BUILD_DIR			:=	src/
 HEADERS_DIR			:=	include/
-MAIN_OBJ			=	$(addprefix $(BUILD_DIR)/, $(MAIN:%.c=%.o))
+MAIN_OBJ			=	$(addprefix $(BUILD_DIR), $(MAIN:%.c=%.o))
 OBJS				=	$(addprefix $(BUILD_DIR), $(SRCS:%.c=%.o))
 
 
@@ -62,7 +62,7 @@ $(NAME): $(OBJS) $(MAIN_OBJ)
 	$(CC) $(CFLAGS) $^ $(INCLUDE_FLAGS) -o $(NAME)
 	@printf "$(BLUE_FG)$(NAME)$(RESET_COLOR) created\n"
 
-$(BUILD_DIR)%.o: $(SRC_DIR)%.c $(HEADERS)
+build/%.o: src/%.c $(HEADERS)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDE_FLAGS) $(INCLUDES) -c $< -o $@
 
@@ -76,11 +76,9 @@ fsan:
 
 clean:
 	$(RM) $(OBJS) $(MAIN_OBJ) $(UNIT_TEST_OBJS) $(COVERAGE)
-	@$(MAKE) clean -C $(LIB_DIR)
 
 fclean: clean
 	$(RM) $(NAME) $(UNIT_TEST)
-	@$(MAKE) fclean -C $(LIB_DIR)
 
 re: fclean
 	$(MAKE)
