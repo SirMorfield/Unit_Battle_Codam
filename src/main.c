@@ -5,7 +5,7 @@
 int	main(int argc, char **argv)
 {
 	unsigned int	scores[MAX_INPUTS];
-	size_t			i;
+	int				i;
 	int				score;
 
 	if (argc > MAX_INPUTS + 1)
