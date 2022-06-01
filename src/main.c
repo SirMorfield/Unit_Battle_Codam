@@ -26,8 +26,8 @@ int	main(int argc, char **argv)
 		}
 		i++;
 	}
-	// score = calculate(scores, argc - 1);
-	score = 10;
+	score = calculate(scores, argc - 1);
+	// score = 10;
 	if (score < 0)
 		printf("Error");
 	else
