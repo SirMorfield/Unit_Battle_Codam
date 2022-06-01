@@ -7,14 +7,18 @@
 unsigned int	ft_strtonum_u(const char *str)
 {
 	unsigned int	result;
+	unsigned int	prev;
 
 	if (*str == '+')
 		str++;
 	result = 0;
 	while (isdigit(*str))
 	{
+		prev = result;
 		result *= 10;
 		result += (unsigned int)(*str - '0');
+		if (result < prev)
+			return (false);
 		str++;
 	}
 	return (result);
