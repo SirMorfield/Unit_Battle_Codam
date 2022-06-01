@@ -4,9 +4,9 @@
 #include <stdbool.h>
 #include <ctype.h>
 
-unsigned long	ft_strtonum_u(const char *str)
+unsigned int	ft_strtonum_u(const char *str)
 {
-	unsigned long	result;
+	unsigned int	result;
 
 	if (*str == '+')
 		str++;
@@ -14,7 +14,7 @@ unsigned long	ft_strtonum_u(const char *str)
 	while (isdigit(*str))
 	{
 		result *= 10;
-		result += (unsigned long)(*str - '0');
+		result += (unsigned int)(*str - '0');
 		str++;
 	}
 	return (result);
@@ -24,8 +24,8 @@ unsigned long	ft_strtonum_u(const char *str)
 bool parse_uint(const char *s, unsigned int *result,\
 	unsigned int min, unsigned int max)
 {
-	size_t	i;
-	long	num;
+	size_t			i;
+	unsigned int	num;
 
 	if (s[0] == '\0')
 		return (false);
@@ -37,5 +37,6 @@ bool parse_uint(const char *s, unsigned int *result,\
 	num = ft_strtonum_u(s);
 	if (num > max || num < min)
 		return (false);
-	return (num);
+	*result = (unsigned int)num;
+	return (true);
 }
