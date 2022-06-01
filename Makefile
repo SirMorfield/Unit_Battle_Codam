@@ -17,8 +17,8 @@ PROJECT				:=	Unit-Battle
 NAME				:=	bowling_game
 
 MAIN 				:=	main.c
-SRCS				=
-UNIT_SRCS			=	unit_test.c
+SRCS				=	calculate.c
+UNIT_SRCS			=	unit_test.c calculate_test.c
 
 
 CC					:=	gcc
@@ -28,9 +28,9 @@ CFLAGS				=	-Wall -Wextra -Werror $(if $(DEBUG), -g) \
 					$(if $(FSAN), -fsanitize=address -g) \
 
 SRC_DIR				:=	src/
-BUILD_DIR			:=	build/
+BUILD_DIR			:=	src/
 HEADERS_DIR			:=	include/
-MAIN_OBJ			=	$(addprefix $(BUILD_DIR)/, $(MAIN:%.c=%.o))
+MAIN_OBJ			=	$(addprefix $(SRC_DIR), $(MAIN:%.c=%.o))
 OBJS				=	$(addprefix $(BUILD_DIR), $(SRCS:%.c=%.o))
 
 
